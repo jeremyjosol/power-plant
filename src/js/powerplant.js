@@ -1,5 +1,5 @@
 // stores our state
-const storeState = () => {
+export const storeState = () => {
   let currentState = {};
   return (stateChangeFunction = state => state) => {
     const newState = stateChangeFunction(currentState);
@@ -11,7 +11,7 @@ const storeState = () => {
 const stateControl = storeState();
 
 // function factory
-const changeState = (prop) => {
+export const changeState = (prop) => {
   return (value) => {
     return (state) => ({
       ...state,
