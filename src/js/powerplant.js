@@ -38,17 +38,15 @@ window.onload = function() {
   document.getElementById('feed').onclick = function() {
     const newState = stateControl(compostTea);
     document.getElementById('soil-moisture').innerText = `Soil: ${newState.soilMoisture}`;
-    stateControl(stateUpdate);
   };
 
   document.getElementById('sunlight').onclick = function() {
     const newState = stateControl(sunlight);
     document.getElementById('photosynthesis').innerText = `Photosynthesis: ${newState.photosynthesis}`;
-    stateControl(stateUpdate);
   };
 
   document.getElementById('show-state').onclick = function() {
-    const currentState = stateControl();
+    const currentState = stateUpdate();
     document.getElementById('bioavailability').innerText = `Bioavailability: ${currentState.bioavailability}`;
   };
 };
