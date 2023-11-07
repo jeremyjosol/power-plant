@@ -23,30 +23,32 @@ export const changeState = (prop) => {
 const compostTea = changeState("soilMoisture")(5);
 const sunlight = changeState("photosynthesis")(25);
 
-stateControl(compostTea);
-stateControl(sunlight);
-
 const stateUpdate = stateControl((state) => {
-  let bioavailability = state.soilMoisture + state.photosynthesis;
   if (state.soilMoisture >= 5 && state.photosynthesis >= 10) {
     return {
       ...state,
-      bioavailability,
+      bioavailability: state.soilMoisture + state.photosynthesis,
     };
   }
   return state;
 });
 
-console.log(stateUpdate);
 
 window.onload = function() {
   document.getElementById('feed').onclick = function() {
     const newState = stateControl(compostTea);
     document.getElementById('soil-moisture').innerText = `Soil: ${newState.soilMoisture}`;
+    stateControl(stateUpdate);
+  };
+
+  document.getElementById('sunlight').onclick = function() {
+    const newState = stateControl(sunlight);
+    document.getElementById('photosynthesis').innerText = `Photosynthesis: ${newState.photosynthesis}`;
+    stateControl(stateUpdate);
   };
 
   document.getElementById('show-state').onclick = function() {
     const currentState = stateControl();
-    document.getElementById('soil-moisture').innerText = `Soil: ${currentState.soilMoisture}`;
+    document.getElementById('bioavailability').innerText = `Bioavailability: ${currentState.bioavailability}`;
   };
 };
