@@ -16,5 +16,16 @@ describe('storeState', () => {
     const newStateWithCompostTea = stateControl(compostTea);
     expect(newStateWithCompostTea).toEqual({ soil : 6 });
   });
+
+  test('it should correctly store and update with new property', () => {
+    const stateControl = storeState();
+    const feed = changeState("soil")(1);
+    const compostTea = changeState("soil")(5);
+    const sunlight = changeState("photosynthesis")(25);
+    stateControl(feed);
+    stateControl(compostTea);
+    const newStateWithSunlight = stateControl(sunlight);
+    expect(newStateWithSunlight).toEqual({ soil : 6, photosynthesis: 25 });
+  });
 });
 
