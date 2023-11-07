@@ -19,3 +19,24 @@ export const changeState = (prop) => {
     })
   }
 }
+
+const feed = changeState("soil")(1);
+const compostTea = changeState("soil")(5);
+const sunlight = changeState("photosynthesis")(25);
+
+stateControl(feed);
+stateControl(compostTea);
+stateControl(sunlight);
+
+const stateUpdate = stateControl((state) => {
+  let bioavailability = state.soil + state.photosynthesis;
+  if (state.soil >= 5 && state.photosynthesis >= 10) {
+    return {
+      ...state,
+      bioavailability,
+    };
+  }
+  return state;
+});
+
+console.log(stateUpdate);
