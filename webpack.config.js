@@ -7,13 +7,16 @@ const Dotenv = require('dotenv-webpack');
 
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/js/powerplant.js',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
     devServer: {
       contentBase: "./dist",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
     },
   devtool: 'eval-source-map',
   
